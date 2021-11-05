@@ -9,14 +9,24 @@ import { BookService } from './book/services/book.service';
 })
 export class AppComponent {
 
+  // private _counter: number = 0;
 
   constructor(private bookService: BookService) {
 
   }
 
+  // get counter() {
+  //   return this._counter++;
+  // }
+
+
   books = this.bookService.findAll();
 
   addBook(book: BookProps) {
     this.bookService.save(book);
+  }
+
+  doSomething(){
+    //
   }
 }

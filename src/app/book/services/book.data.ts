@@ -23,6 +23,7 @@ export class BookImpl implements Book {
   }
 
   get author(): string {
+    console.log(`Book.author (id: ${this._id})`);
     return this._author;
   }
 
@@ -31,6 +32,7 @@ export class BookImpl implements Book {
   }
 
   get title(): string {
+    console.log(`Book.title (id: ${this._id})`);
     return this._title;
   }
 
