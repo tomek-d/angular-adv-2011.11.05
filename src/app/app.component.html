@@ -1,11 +1,14 @@
 <div class="container mt-4">
-  <app-book-list [books]="books">
+  <app-book-list [books]="books" [interval]="interval$">
 
   </app-book-list>
   <div class="row">
     <!-- <app-book-editor (bookAdded)="addBook($event)"></app-book-editor> -->
   </div>
-  <div class="row">
+  <div class="row" >
     <button (click)="doSomething()">Go!</button>
+    <button (click)="buySomeBook()">Buy book</button>
+    <div style="width: 100px; height: 100px; background-color: blueviolet;" (mousemove)="doSomething()">&nbsp;</div>
+    <button (click)="runOutsideOfZone()">Run outside of Zone</button>
   </div>
 </div>

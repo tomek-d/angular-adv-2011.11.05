@@ -1,4 +1,4 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, NgZone } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 
@@ -18,5 +18,15 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+const zone = new NgZone({shouldCoalesceRunChangeDetection: true});
+
+zone.onUnstable.subscribe(() => {
+  console.log('ZONE Unstable!');
+});
+
+zone.onMicrotaskEmpty.subscribe(() => {
+  console.log('ZONE MicrotaskEmpty!');
+});
+
+platformBrowserDynamic().bootstrapModule(AppModule, { ngZone: zone})
   .catch(err => console.error(err));

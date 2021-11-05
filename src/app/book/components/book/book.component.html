@@ -3,6 +3,9 @@
     {{book?.title}}
   </div>
   <div class="card-body">
-    Author: {{book?.author}}
+    Author: {{book?.author}} <br/>
+    Buys: {{book?.buys}} <br/>
+    Likes: {{ likes }} <br/>
+    <button (click)="incrementLikes()">+</button>
   </div>
 </div>

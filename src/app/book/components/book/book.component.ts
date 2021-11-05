@@ -5,7 +5,7 @@ import { Book } from '../../model/book';
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookComponent implements DoCheck, OnChanges {
 
@@ -21,5 +21,12 @@ export class BookComponent implements DoCheck, OnChanges {
 
   @Input()
   book: Book | undefined;
+
+  likes: number = 0;
+
+
+  incrementLikes() {
+    this.likes++;
+  }
 
 }

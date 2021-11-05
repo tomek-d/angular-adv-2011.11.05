@@ -1,5 +1,5 @@
 import { BookProps } from './book/model/book';
-import { Component } from '@angular/core';
+import { Component, ɵmarkDirty as markDirty, ɵdetectChanges, NgZone } from '@angular/core';
 import { BookService } from './book/services/book.service';
 
 @Component({
@@ -11,7 +11,10 @@ export class AppComponent {
 
   // private _counter: number = 0;
 
-  constructor(private bookService: BookService) {
+  constructor(
+    private bookService: BookService,
+    private zone: NgZone
+  ) {
 
   }
 
@@ -22,11 +25,33 @@ export class AppComponent {
 
   books = this.bookService.findAll();
 
+  interval$ = this.bookService.tick();
+
   addBook(book: BookProps) {
     this.bookService.save(book);
   }
 
   doSomething(){
-    //
+    console.log('Clicked');
+  }
+
+  buySomeBook() {
+    this.bookService.buyBook(2);
+    markDirty(this);
+  }
+
+  runOutsideOfZone() {
+    this.zone.runOutsideAngular(() => {
+      let i = 0;
+      setInterval(() => {
+        console.log('TICK' );
+        ++i;
+        if (i % 10 === 0) {
+          this.zone.run(() => {
+            console.log('INSIDE ANGULAR CD');
+          });
+        }
+      }, 1000);
+    });
   }
 }
