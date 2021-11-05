@@ -1,4 +1,6 @@
+import { BookProps } from './book/model/book';
 import { Component } from '@angular/core';
+import { BookService } from './book/services/book.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-adv';
+
+
+  constructor(private bookService: BookService) {
+
+  }
+
+  books = this.bookService.findAll();
+
+  addBook(book: BookProps) {
+    this.bookService.save(book);
+  }
 }

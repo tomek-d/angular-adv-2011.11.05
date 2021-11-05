@@ -1,0 +1,13 @@
+<form [formGroup]="bookForm" (ngSubmit)="saveBook()">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title:</label>
+    <input id="title" class="form-control" formControlName="title" />
+  </div>
+  <div class="mb-3">
+    <label for="author" class="form-label">Author:</label>
+    <input id="author" class="form-control" formControlName="author" />
+  </div>
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Save</button>
+  </div>
+</form>
